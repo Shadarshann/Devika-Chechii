@@ -12,9 +12,11 @@ const hiddenSections = document.querySelectorAll(".hidden");
 
 const petals = document.getElementById("petals");
 
-const wishDialog = document.getElementById("wishDialog");
+const wishArea = document.getElementById("wishArea");
 const sendWish = document.getElementById("sendWish");
 const wishInput = document.getElementById("wishInput");
+const finalMessage = document.getElementById("finalMessage");
+
 
 // ===============================
 // Open Surprise
@@ -41,13 +43,12 @@ startBtn.addEventListener("click", () => {
 
     }, 600);
 
-    music1.play().catch(err => {
-        console.log(err);
-    });
+    music1.play().catch(err => console.log(err));
 
     celebrate();
 
 });
+
 
 // ===============================
 // Auto Play Second Song
@@ -59,15 +60,29 @@ music1.addEventListener("ended", () => {
 
 });
 
+
 // ===============================
 // Blow The Candles
 // ===============================
 
 wishBtn.addEventListener("click", () => {
 
-    wishDialog.showModal();
+    wishArea.style.display = "block";
+
+    wishArea.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
 
 });
+
+
+// ===============================
+// Send Wish
+// ===============================
 
 sendWish.addEventListener("click", () => {
 
@@ -81,79 +96,72 @@ sendWish.addEventListener("click", () => {
 
     }
 
-    wishDialog.close();
-
     celebrate();
+
     launchFireworks();
 
-    setTimeout(() => {
+    wishInput.disabled = true;
+    sendWish.disabled = true;
 
-        document.body.innerHTML = `
+    finalMessage.innerHTML = "";
 
-<div style="
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:linear-gradient(135deg,#ffd6ec,#ffeef8,#f6e8ff);
-text-align:center;
-padding:30px;
-font-family:Poppins;
-">
+    const lines = [
 
-<h1 style="
-font-family:Parisienne;
-font-size:70px;
-color:#ff4fa3;
-">
+        "You wished for something...",
 
-Happy Birthday ❤️
+        "I hope it comes true...",
 
-</h1>
+        "But before today ends...",
 
-<h2>Devika Chechii</h2>
+        "I want you to remember one thing...",
 
-<p style="
-max-width:700px;
-font-size:22px;
-line-height:2;
-margin-top:30px;
-">
+        "No gift in this world could ever replace the bond we share.",
 
-Every wish is beautiful...
+        "Happy Birthday Chechii ❤️",
 
-<br><br>
+        "No matter where life takes us...",
 
-But remember one thing...
+        "I'll always be by your side.",
 
-<br><br>
+        "❤️ Love,\nKannan Mon"
 
-🎁
+    ];
 
-<br><br>
+    let currentLine = 0;
 
-Your biggest gift
+    function typeLine() {
 
-has always been
+        if (currentLine >= lines.length) return;
 
-<b>Kannan Mon ❤️</b>
+        let text = lines[currentLine];
 
-<br><br>
+        let index = 0;
 
-No matter where life takes us,
+        const p = document.createElement("p");
 
-I'll always be by your side.
+        finalMessage.appendChild(p);
 
-</p>
+        const typing = setInterval(() => {
 
-</div>
+            p.innerHTML += text.charAt(index);
 
-`;
+            index++;
 
-        launchFireworks();
+            if(index >= text.length){
 
-    }, 2000);
+                clearInterval(typing);
+
+                currentLine++;
+
+                setTimeout(typeLine,1200);
+
+            }
+
+        },45);
+
+    }
+
+    typeLine();
 
 });
 
