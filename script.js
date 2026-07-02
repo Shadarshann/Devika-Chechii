@@ -104,3 +104,54 @@ function createPetal() {
 }
 
 setInterval(createPetal, 300);
+
+
+
+// ===============================
+// Confetti Celebration
+// ===============================
+
+function celebrate() {
+
+    const duration = 5000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+
+        confetti({
+            particleCount: 6,
+            angle: 60,
+            spread: 70,
+            origin: { x: 0 }
+        });
+
+        confetti({
+            particleCount: 6,
+            angle: 120,
+            spread: 70,
+            origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+
+    })();
+
+}
+
+
+// Start celebration when opening surprise
+startBtn.addEventListener("click", () => {
+
+    celebrate();
+
+});
+
+
+// Celebrate again after blowing candles
+wishBtn.addEventListener("click", () => {
+
+    celebrate();
+
+});
