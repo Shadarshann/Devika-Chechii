@@ -67,3 +67,40 @@ wishBtn.addEventListener("click", () => {
     alert("🎉 Happy Birthday Devika Chechii ❤️🎂");
 
 });
+
+
+
+
+
+// ===============================
+// Cherry Blossom Petals
+// ===============================
+
+const petals = document.getElementById("petals");
+
+function createPetal() {
+
+    const petal = document.createElement("div");
+
+    petal.classList.add("petal");
+
+    petal.style.left = Math.random() * window.innerWidth + "px";
+
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    petal.style.opacity = Math.random();
+
+    petal.style.transform =
+        `rotate(${Math.random() * 360}deg)`;
+
+    petals.appendChild(petal);
+
+    setTimeout(() => {
+
+        petal.remove();
+
+    }, 10000);
+
+}
+
+setInterval(createPetal, 300);
