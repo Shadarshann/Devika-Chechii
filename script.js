@@ -1,4 +1,3 @@
-
 // ===============================
 // Elements
 // ===============================
@@ -11,6 +10,11 @@ const music2 = document.getElementById("music2");
 
 const hiddenSections = document.querySelectorAll(".hidden");
 
+const petals = document.getElementById("petals");
+
+const wishDialog = document.getElementById("wishDialog");
+const sendWish = document.getElementById("sendWish");
+const wishInput = document.getElementById("wishInput");
 
 // ===============================
 // Open Surprise
@@ -18,7 +22,6 @@ const hiddenSections = document.querySelectorAll(".hidden");
 
 startBtn.addEventListener("click", () => {
 
-    // Reveal hidden sections
     hiddenSections.forEach((section, index) => {
 
         setTimeout(() => {
@@ -30,7 +33,6 @@ startBtn.addEventListener("click", () => {
 
     });
 
-    // Smooth scroll
     setTimeout(() => {
 
         document.querySelector(".letter").scrollIntoView({
@@ -39,13 +41,13 @@ startBtn.addEventListener("click", () => {
 
     }, 600);
 
-    // Play first music
     music1.play().catch(err => {
-        console.log("Audio couldn't start:", err);
+        console.log(err);
     });
 
-});
+    celebrate();
 
+});
 
 // ===============================
 // Auto Play Second Song
@@ -57,30 +59,107 @@ music1.addEventListener("ended", () => {
 
 });
 
-
 // ===============================
-// Cake Button
+// Blow The Candles
 // ===============================
 
 wishBtn.addEventListener("click", () => {
 
-    celebrate();
-
-    document.body.classList.add("celebration");
-
-    alert("🎉 Make a wish! Happy Birthday Devika Chechii ❤️🎂");
+    wishDialog.showModal();
 
 });
 
+sendWish.addEventListener("click", () => {
 
+    const wish = wishInput.value.trim();
 
+    if (wish === "") {
 
+        alert("❤️ Please write your wish first.");
+
+        return;
+
+    }
+
+    wishDialog.close();
+
+    celebrate();
+    launchFireworks();
+
+    setTimeout(() => {
+
+        document.body.innerHTML = `
+
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#ffd6ec,#ffeef8,#f6e8ff);
+text-align:center;
+padding:30px;
+font-family:Poppins;
+">
+
+<h1 style="
+font-family:Parisienne;
+font-size:70px;
+color:#ff4fa3;
+">
+
+Happy Birthday ❤️
+
+</h1>
+
+<h2>Devika Chechii</h2>
+
+<p style="
+max-width:700px;
+font-size:22px;
+line-height:2;
+margin-top:30px;
+">
+
+Every wish is beautiful...
+
+<br><br>
+
+But remember one thing...
+
+<br><br>
+
+🎁
+
+<br><br>
+
+Your biggest gift
+
+has always been
+
+<b>Kannan Mon ❤️</b>
+
+<br><br>
+
+No matter where life takes us,
+
+I'll always be by your side.
+
+</p>
+
+</div>
+
+`;
+
+        launchFireworks();
+
+    }, 2000);
+
+});
 
 // ===============================
 // Cherry Blossom Petals
 // ===============================
-
-const petals = document.getElementById("petals");
 
 function createPetal() {
 
@@ -109,10 +188,8 @@ function createPetal() {
 
 setInterval(createPetal, 300);
 
-
-
 // ===============================
-// Confetti Celebration
+// Confetti
 // ===============================
 
 function celebrate() {
@@ -137,29 +214,14 @@ function celebrate() {
         });
 
         if (Date.now() < end) {
+
             requestAnimationFrame(frame);
+
         }
 
     })();
 
 }
-
-
-// Start celebration when opening surprise
-startBtn.addEventListener("click", () => {
-
-    celebrate();
-
-});
-
-
-// Celebrate again after blowing candles
-wishBtn.addEventListener("click", () => {
-
-    celebrate();
-
-});
-
 
 // ===============================
 // Floating Hearts
@@ -191,27 +253,39 @@ function createHeart() {
 
 setInterval(createHeart, 900);
 
+// ===============================
+// Fireworks
+// ===============================
 
 function launchFireworks() {
+
     const duration = 4000;
     const end = Date.now() + duration;
 
     (function frame() {
 
         confetti({
+
             particleCount: 80,
             startVelocity: 55,
             spread: 360,
             ticks: 100,
+
             origin: {
+
                 x: Math.random(),
                 y: Math.random() * 0.5
+
             }
+
         });
 
         if (Date.now() < end) {
+
             requestAnimationFrame(frame);
+
         }
 
     })();
+
 }
