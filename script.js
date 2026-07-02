@@ -64,7 +64,11 @@ music1.addEventListener("ended", () => {
 
 wishBtn.addEventListener("click", () => {
 
-    alert("🎉 Happy Birthday Devika Chechii ❤️🎂");
+    celebrate();
+
+    document.body.classList.add("celebration");
+
+    alert("🎉 Make a wish! Happy Birthday Devika Chechii ❤️🎂");
 
 });
 
@@ -155,3 +159,34 @@ wishBtn.addEventListener("click", () => {
     celebrate();
 
 });
+
+
+// ===============================
+// Floating Hearts
+// ===============================
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 7000);
+
+}
+
+setInterval(createHeart, 900);
