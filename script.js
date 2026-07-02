@@ -85,6 +85,9 @@ wishBtn.addEventListener("click", () => {
 // ===============================
 // Send Wish
 // ===============================
+// ===============================
+// Send Wish
+// ===============================
 
 sendWish.addEventListener("click", () => {
 
@@ -102,6 +105,12 @@ sendWish.addEventListener("click", () => {
     wishInput.disabled = true;
     sendWish.disabled = true;
 
+    // Show the reply area
+    finalMessage.style.display = "block";
+    finalMessage.style.marginTop = "40px";
+    finalMessage.style.textAlign = "center";
+    finalMessage.innerHTML = "";
+
     const lines = [
 
         "You wished for something...",
@@ -114,43 +123,54 @@ sendWish.addEventListener("click", () => {
 
         "No gift in this world could ever replace the bond we share.",
 
-        "Happy Birthday Chechii ❤️",
+        "Because...",
+
+        "❤️ I am your biggest treasure.",
+
+        "And you'll always be mine.",
 
         "No matter where life takes us...",
 
         "I'll always be by your side.",
 
-        "❤️ Love,\nKannan Mon"
+        "Happy Birthday Chechii ❤️",
+
+        "❤️ Love,", 
+
+        "Your Kannan Mon ❤️"
 
     ];
 
-    finalMessage.innerHTML = "";
+    let line = 0;
 
-    let lineIndex = 0;
+    function typeNextLine() {
 
-    function showNextLine() {
-
-        if (lineIndex >= lines.length) return;
+        if (line >= lines.length) return;
 
         const p = document.createElement("p");
 
+        p.style.fontSize = "22px";
+        p.style.lineHeight = "1.8";
+        p.style.margin = "18px 0";
+        p.style.color = "#ff4fa3";
+
         finalMessage.appendChild(p);
 
-        let charIndex = 0;
+        let letter = 0;
 
-        const interval = setInterval(() => {
+        const typing = setInterval(() => {
 
-            p.textContent += lines[lineIndex][charIndex];
+            p.textContent += lines[line].charAt(letter);
 
-            charIndex++;
+            letter++;
 
-            if (charIndex >= lines[lineIndex].length) {
+            if (letter >= lines[line].length) {
 
-                clearInterval(interval);
+                clearInterval(typing);
 
-                lineIndex++;
+                line++;
 
-                setTimeout(showNextLine, 1200);
+                setTimeout(typeNextLine, 1400);
 
             }
 
@@ -158,9 +178,10 @@ sendWish.addEventListener("click", () => {
 
     }
 
-    showNextLine();
+    typeNextLine();
 
 });
+
 // ===============================
 // Cherry Blossom Petals
 // ===============================
