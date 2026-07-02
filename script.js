@@ -190,3 +190,28 @@ function createHeart() {
 }
 
 setInterval(createHeart, 900);
+
+
+function launchFireworks() {
+    const duration = 4000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+
+        confetti({
+            particleCount: 80,
+            startVelocity: 55,
+            spread: 360,
+            ticks: 100,
+            origin: {
+                x: Math.random(),
+                y: Math.random() * 0.5
+            }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+
+    })();
+}
