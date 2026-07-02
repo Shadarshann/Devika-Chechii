@@ -456,3 +456,66 @@ background:#ff4fa3;
 }
 
 }
+
+/* ===========================
+   Floating Hearts
+=========================== */
+
+.heart{
+
+    position:fixed;
+
+    bottom:-40px;
+
+    z-index:5;
+
+    pointer-events:none;
+
+    animation:heartFloat linear forwards;
+
+}
+
+@keyframes heartFloat{
+
+    from{
+
+        transform:translateY(0) scale(.7);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-120vh) scale(1.5);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* Celebration Glow */
+
+.celebration{
+
+    animation:bgGlow 2s infinite alternate;
+
+}
+
+@keyframes bgGlow{
+
+    from{
+
+        filter:brightness(100%);
+
+    }
+
+    to{
+
+        filter:brightness(110%);
+
+    }
+
+}
