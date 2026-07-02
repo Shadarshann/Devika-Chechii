@@ -69,6 +69,8 @@ wishBtn.addEventListener("click", () => {
 
     wishArea.style.display = "block";
 
+    wishArea.classList.remove("hidden");
+
     wishArea.scrollIntoView({
 
         behavior: "smooth",
@@ -86,9 +88,7 @@ wishBtn.addEventListener("click", () => {
 
 sendWish.addEventListener("click", () => {
 
-    const wish = wishInput.value.trim();
-
-    if (wish === "") {
+    if (wishInput.value.trim() === "") {
 
         alert("❤️ Please write your wish first.");
 
@@ -97,13 +97,10 @@ sendWish.addEventListener("click", () => {
     }
 
     celebrate();
-
     launchFireworks();
 
     wishInput.disabled = true;
     sendWish.disabled = true;
-
-    finalMessage.innerHTML = "";
 
     const lines = [
 
@@ -127,44 +124,43 @@ sendWish.addEventListener("click", () => {
 
     ];
 
-    let currentLine = 0;
+    finalMessage.innerHTML = "";
 
-    function typeLine() {
+    let lineIndex = 0;
 
-        if (currentLine >= lines.length) return;
+    function showNextLine() {
 
-        let text = lines[currentLine];
-
-        let index = 0;
+        if (lineIndex >= lines.length) return;
 
         const p = document.createElement("p");
 
         finalMessage.appendChild(p);
 
-        const typing = setInterval(() => {
+        let charIndex = 0;
 
-            p.innerHTML += text.charAt(index);
+        const interval = setInterval(() => {
 
-            index++;
+            p.textContent += lines[lineIndex][charIndex];
 
-            if(index >= text.length){
+            charIndex++;
 
-                clearInterval(typing);
+            if (charIndex >= lines[lineIndex].length) {
 
-                currentLine++;
+                clearInterval(interval);
 
-                setTimeout(typeLine,1200);
+                lineIndex++;
+
+                setTimeout(showNextLine, 1200);
 
             }
 
-        },45);
+        }, 45);
 
     }
 
-    typeLine();
+    showNextLine();
 
 });
-
 // ===============================
 // Cherry Blossom Petals
 // ===============================
