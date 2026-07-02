@@ -1,214 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Happy Birthday Dev Chechi ❤️</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Parisienne&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
-<!-- ===========================
-Music
-=========================== -->
-
-<audio id="music1">
-    <source src="assets/music/birthday1.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="music2">
-    <source src="assets/music/birthday2.mp3" type="audio/mpeg">
-</audio>
-
-<!-- ===========================
-Cherry Blossom Background
-=========================== -->
+<audio id="music1"><source src="assets/music/birthday1.mp3" type="audio/mpeg"></audio>
+<audio id="music2"><source src="assets/music/birthday2.mp3" type="audio/mpeg"></audio>
 
 <div id="petals"></div>
 
-<!-- ===========================
-Hero
-=========================== -->
-
 <section class="hero">
-
+<div class="hero-content">
+<p class="small-title">✨ A little surprise made with lots of love ✨</p>
 <h1>Happy Birthday</h1>
-
 <h2>Devika Chechii ❤️</h2>
-
-<p>
-
-Every beautiful story deserves
-a beautiful beginning.
-
+<p class="hero-text">
+Every beautiful story deserves a beautiful beginning...
+<br><br>
+And today I want to take you on a journey through some of our happiest memories.
 </p>
-
-<button id="startBtn">
-
-Open Your Surprise 🎁
-
-</button>
-
+<button id="startBtn">Open Your Surprise 🎁</button>
+<p class="scroll-text">↓ Scroll after opening ↓</p>
+</div>
 </section>
-
-<!-- ===========================
-Letter
-=========================== -->
 
 <section class="letter hidden">
-
 <h2>A Letter For You 💌</h2>
-
-<p>
-
-Dear Chechii,
-
-<br><br>
-
-Thank you for always being there for me.
-
-<br>
-
-Thank you for making life brighter.
-
-<br><br>
-
-I hope today is filled with happiness,
-
-<br>
-
-love,
-
-<br>
-
-and beautiful memories.
-
-<br><br>
-
-May every dream of yours come true.
-
-<br><br>
-
-Happy Birthday ❤️
-
-<br><br>
-
-Love,
-
-<br>
-
-Your Brother
-
-</p>
-
+<div class="letter-content">
+<p class="fade-paragraph">Dear Chechii,</p>
+<p class="fade-paragraph">Thank you for always being there for me.</p>
+<p class="fade-paragraph">Thank you for making life brighter.</p>
+<p class="fade-paragraph">I hope today is filled with happiness, love and beautiful memories.</p>
+<p class="fade-paragraph">May every dream of yours come true.</p>
+<p class="fade-paragraph">Happy Birthday ❤️</p>
+<p class="fade-paragraph">Love,<br>Your Kannan Mon ❤️</p>
+</div>
 </section>
-
-<!-- ===========================
-Gallery
-=========================== -->
 
 <section class="gallery hidden">
-
-<h2>Our Beautiful Memories 📸</h2>
-
+<h2>Our Beautiful Memories 📖</h2>
 <div class="photos">
-
-<img src="assets/photos/photo4.jpg" alt="Memory 4">
-<img src="assets/photos/photo6.jpg" alt="Memory 6">
-<img src="assets/photos/photo3.jpg" alt="Memory 3">
-<img src="assets/photos/photo5.jpg" alt="Memory 5">
-<img src="assets/photos/photo7.jpg" alt="Memory 7">
-<img src="assets/photos/photo8.jpg" alt="Memory 8">
-<img src="assets/photos/photo9.jpg" alt="Memory 9">
-<img src="assets/photos/photo10.jpg" alt="Memory 10">
-<img src="assets/photos/photo1.jpg" alt="Memory 1">
-<img src="assets/photos/photo2.jpg" alt="Memory 2">
-
+<img src="assets/photos/photo4.jpg" alt="">
+<img src="assets/photos/photo6.jpg" alt="">
+<img src="assets/photos/photo3.jpg" alt="">
+<img src="assets/photos/photo5.jpg" alt="">
+<img src="assets/photos/photo7.jpg" alt="">
+<img src="assets/photos/photo8.jpg" alt="">
+<img src="assets/photos/photo9.jpg" alt="">
+<img src="assets/photos/photo10.jpg" alt="">
+<img src="assets/photos/photo1.jpg" alt="">
+<img src="assets/photos/photo2.jpg" alt="">
 </div>
-
 </section>
-
-<!-- ===========================
-Cake
-=========================== -->
 
 <section class="cake hidden">
-
 <h2>Make A Wish 🎂</h2>
+<div class="cake-box">🎂</div>
+<button id="wishBtn">Blow The Candles 🕯️</button>
 
-<div class="cake-box">
-
-🎂
-
-</div>
-
-<button id="wishBtn">
-
-Blow The Candles 🕯️
-
-</button>
-
-<!-- Hidden Wish Area -->
-
-<div id="wishArea" style="display:none; margin-top:40px;">
-
+<div id="wishArea" style="display:none;">
 <h3>🌠 Make A Wish</h3>
-
-<p>
-
-Close your eyes...
-
-Think about your biggest wish ❤️
-
-</p>
-
-<textarea
-
-id="wishInput"
-
-placeholder="Write your wish here..."
-
-></textarea>
-
-<br><br>
-
-<button id="sendWish">
-
-Send My Wish 💌
-
-</button>
-
+<textarea id="wishInput" placeholder="Write your wish here..."></textarea>
+<button id="sendWish">Send My Wish 💌</button>
 <div id="finalMessage"></div>
-
+<button id="hugBtn" style="display:none;">🤗 One Last Hug</button>
 </div>
-
 </section>
-
-<!-- ===========================
-Fireworks
-=========================== -->
 
 <canvas id="fireworks"></canvas>
 
-<!-- ===========================
-Scripts
-=========================== -->
-
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
-
 <script src="script.js"></script>
-
 </body>
-
 </html>
